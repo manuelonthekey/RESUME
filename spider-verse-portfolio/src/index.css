@@ -1,0 +1,180 @@
+:root {
+  --primary-red: #D62828;
+  --deep-blue: #003049;
+  --pitch-black: #111111;
+  --off-white: #F8F9FA;
+  
+  --electric-cyan: #00f0ff;
+  --neon-purple: #b200ff;
+  --glowing-green: #00ff66;
+  --comic-yellow: #fcd53f;
+
+  --font-comic: 'Bangers', 'Comic Sans MS', cursive, sans-serif;
+  --font-tech: 'Inter', 'Roboto', 'Space Mono', sans-serif;
+  --font-handwritten: 'Permanent Marker', cursive;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--pitch-black);
+  color: var(--off-white);
+  font-family: var(--font-tech);
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at center, rgba(0, 48, 73, 0.4) 0%, transparent 70%),
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.02) 2px, rgba(255,255,255,0.02) 4px);
+}
+
+/* Halftone Effect Background */
+.halftone-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  opacity: 0.15;
+  background: radial-gradient(circle, var(--primary-red) 2px, transparent 2.5px) 0 0 / 15px 15px;
+}
+
+/* Comic Panel Containers */
+.comic-page {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  gap: 15px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.comic-panel {
+  background-color: var(--off-white);
+  color: var(--pitch-black);
+  border: 6px solid var(--pitch-black);
+  box-shadow: 8px 8px 0px var(--primary-red);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+}
+
+.comic-panel.dark {
+  background-color: var(--deep-blue);
+  color: var(--off-white);
+  border-color: var(--off-white);
+  box-shadow: 8px 8px 0px var(--electric-cyan);
+}
+
+.comic-panel:hover {
+  transform: scale(1.02) rotate(-1deg);
+  box-shadow: 12px 12px 0px var(--comic-yellow);
+}
+
+/* Comic Texts */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-comic);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.comic-title {
+  font-size: 4rem;
+  line-height: 1.1;
+  color: var(--off-white);
+  text-shadow: 4px 4px 0px var(--primary-red), 8px 8px 0px var(--pitch-black);
+}
+
+/* Speech Bubbles */
+.speech-bubble {
+  position: absolute;
+  background: var(--off-white);
+  color: var(--pitch-black);
+  border: 4px solid var(--pitch-black);
+  border-radius: 50%;
+  padding: 20px;
+  font-family: var(--font-comic);
+  font-size: 1.2rem;
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  border-width: 20px 20px 0 0;
+  border-style: solid;
+  border-color: var(--pitch-black) transparent transparent transparent;
+}
+
+/* Buttons */
+.comic-btn {
+  background-color: var(--primary-red);
+  color: var(--off-white);
+  border: 4px solid var(--pitch-black);
+  padding: 12px 24px;
+  font-family: var(--font-comic);
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 4px 4px 0px var(--pitch-black);
+  transition: all 0.2s ease;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.comic-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--pitch-black);
+  background-color: var(--comic-yellow);
+  color: var(--pitch-black);
+}
+
+.comic-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px var(--pitch-black);
+}
+
+/* Spider-Sense Animation */
+@keyframes spider-sense {
+  0% { box-shadow: 0 0 0 0 rgba(214, 40, 40, 0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(214, 40, 40, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(214, 40, 40, 0); }
+}
+
+.spider-sense:hover {
+  animation: spider-sense 1.5s infinite;
+  border-color: var(--primary-red);
+}
+
+/* Floating Web Strands */
+.web-strand {
+  position: absolute;
+  background: rgba(255,255,255,0.5);
+  height: 2px;
+  transform-origin: left center;
+  z-index: -1;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--pitch-black);
+  border-left: 2px solid var(--primary-red);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary-red);
+  border: 2px solid var(--pitch-black);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--electric-cyan);
+}
