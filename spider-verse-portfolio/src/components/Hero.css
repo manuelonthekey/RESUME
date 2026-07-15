@@ -29,7 +29,7 @@
 /* Halftone Backgrounds for Panel 1 and 2 */
 .panel-1 { 
     width: 100%; 
-    background-image: url('/images/redBG.png');
+    background-image: url('../assets/images/redBG.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -40,7 +40,7 @@
 
 .panel-2 { 
     width: 100%; 
-    background-image: url('/images/yellowbg.png');
+    background-image: url('../assets/images/yellowbg.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
