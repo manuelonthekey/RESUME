@@ -75,7 +75,7 @@ body {
   box-shadow: 12px 12px 0px var(--comic-yellow);
 }
 
-/* Comic Texts */
+/* Base Comic Texts */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-comic);
   text-transform: uppercase;
@@ -112,6 +112,82 @@ h1, h2, h3, h4, h5, h6 {
   border-color: var(--pitch-black) transparent transparent transparent;
 }
 
+/* Narration Box */
+.narration-box {
+  background: var(--comic-yellow);
+  color: var(--pitch-black);
+  border: 4px solid var(--pitch-black);
+  padding: 15px;
+  font-family: var(--font-tech);
+  font-size: 1.1rem;
+  font-weight: bold;
+  box-shadow: 4px 4px 0px var(--primary-red);
+}
+
+/* Animations */
+@keyframes spider-sense {
+  0% { box-shadow: 0 0 0 0 rgba(214, 40, 40, 0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(214, 40, 40, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(214, 40, 40, 0); }
+}
+
+.spider-sense {
+  animation: spider-sense 1.5s infinite;
+}
+
+@keyframes comic-pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2) rotate(5deg); }
+  100% { transform: scale(1); }
+}
+
+.comic-pop:active, .comic-pop:hover {
+  animation: comic-pop 0.3s ease forwards;
+}
+
+/* New CSS Grid Layouts & Asymmetric Panels */
+.hero-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
+  gap: 15px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Desktop Grid Rules */
+@media (min-width: 992px) {
+  .hero-panel-1 { grid-column: 1 / 8; grid-row: 1 / 3; }
+  .hero-panel-2 { grid-column: 8 / 13; grid-row: 1 / 2; }
+  .hero-panel-3 { grid-column: 8 / 13; grid-row: 2 / 3; }
+  .hero-panel-4 { grid-column: 1 / 5; grid-row: 3 / 4; }
+  .hero-panel-5 { grid-column: 5 / 9; grid-row: 3 / 4; }
+  .hero-panel-6 { grid-column: 9 / 13; grid-row: 3 / 4; }
+}
+
+/* Mobile Stack Fallback */
+@media (max-width: 991px) {
+  .hero-panel-1, .hero-panel-2, .hero-panel-3, .hero-panel-4, .hero-panel-5, .hero-panel-6 {
+    grid-column: 1 / 13;
+  }
+}
+
+/* Clip Path Polygon Classes */
+.shape-trapezoid-1 {
+  clip-path: polygon(0 0, 100% 5%, 95% 100%, 0 95%);
+}
+.shape-trapezoid-2 {
+  clip-path: polygon(5% 0, 100% 0, 100% 95%, 0 100%);
+}
+.shape-slant {
+  clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+}
+.shape-broken {
+  /* Using standard borders but we can overlay elements outside of overflow hidden */
+  overflow: visible !important;
+}
+
 /* Buttons */
 .comic-btn {
   background-color: var(--primary-red);
@@ -129,7 +205,6 @@ h1, h2, h3, h4, h5, h6 {
   gap: 10px;
   text-decoration: none;
 }
-
 .comic-btn:hover {
   transform: translate(-2px, -2px);
   box-shadow: 6px 6px 0px var(--pitch-black);
@@ -137,44 +212,45 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--pitch-black);
 }
 
-.comic-btn:active {
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0px var(--pitch-black);
+/* Web Nodes */
+.web-node {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--off-white);
+  border: 4px solid var(--pitch-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--pitch-black);
+  font-weight: bold;
+  position: absolute;
+  cursor: pointer;
+  z-index: 20;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-
-/* Spider-Sense Animation */
-@keyframes spider-sense {
-  0% { box-shadow: 0 0 0 0 rgba(214, 40, 40, 0.7); }
-  70% { box-shadow: 0 0 0 15px rgba(214, 40, 40, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(214, 40, 40, 0); }
+.web-node:hover {
+  transform: scale(1.2);
 }
-
-.spider-sense:hover {
-  animation: spider-sense 1.5s infinite;
-  border-color: var(--primary-red);
-}
-
-/* Floating Web Strands */
 .web-strand {
   position: absolute;
-  background: rgba(255,255,255,0.5);
-  height: 2px;
+  background: var(--off-white);
+  height: 4px;
+  border: 2px solid var(--pitch-black);
   transform-origin: left center;
-  z-index: -1;
+  z-index: 15;
+  transition: width 0.2s ease, transform 0.2s ease;
+}
+
+/* Text Highlights */
+.comic-highlight {
+  color: var(--primary-red);
+  text-shadow: 2px 2px 0px var(--pitch-black);
+  font-size: 2.5rem;
 }
 
 /* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 12px;
-}
-::-webkit-scrollbar-track {
-  background: var(--pitch-black);
-  border-left: 2px solid var(--primary-red);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--primary-red);
-  border: 2px solid var(--pitch-black);
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--electric-cyan);
-}
+::-webkit-scrollbar { width: 12px; }
+::-webkit-scrollbar-track { background: var(--pitch-black); border-left: 2px solid var(--primary-red); }
+::-webkit-scrollbar-thumb { background: var(--primary-red); border: 2px solid var(--pitch-black); }
+::-webkit-scrollbar-thumb:hover { background: var(--electric-cyan); }

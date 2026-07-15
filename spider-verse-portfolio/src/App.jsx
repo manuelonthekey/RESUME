@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import OriginStory from './components/OriginStory';
+import InternshipArcs from './components/InternshipArcs';
 import Superpowers from './components/Superpowers';
 import Missions from './components/Missions';
-import Timeline from './components/Timeline';
 import Contact from './components/Contact';
 import QuoteCard from './components/ui/QuoteCard';
 
@@ -31,21 +31,27 @@ function App() {
       <main>
         <Hero />
         
-        <QuoteCard quote="Anyone can wear the mask. You can wear the mask." author="MILES MORALES" />
+        <QuoteCard quote="Anyone can write code. The hard part is owning the bugs." author="THE DEVELOPER VIGILANTE" />
         
         <OriginStory />
         
-        <QuoteCard quote="It's not about the suit; it's about what you do with it." author="TONY STARK" />
+        <QuoteCard quote="My Spider-Sense? It usually activates five minutes before production crashes." author="THE DEVELOPER VIGILANTE" />
+        
+        <InternshipArcs />
+
+        <QuoteCard quote="Heroes save cities. Developers save production." author="THE DEVELOPER VIGILANTE" />
         
         <Superpowers />
+
+        <QuoteCard quote="The real villains aren't monsters. They're undocumented APIs." author="THE DEVELOPER VIGILANTE" />
         
         <Missions />
         
-        <Timeline />
-        
-        <QuoteCard quote="With great power comes great responsibility." author="UNCLE BEN" />
+        <QuoteCard quote="Every deploy is a leap of faith." author="THE DEVELOPER VIGILANTE" />
         
         <Contact />
+
+        <QuoteCard quote="With great power comes great responsibility." author="UNCLE BEN" />
       </main>
     </div>
   );
