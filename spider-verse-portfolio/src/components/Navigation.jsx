@@ -3,28 +3,13 @@ import { Network, Home, BookOpen, Zap, Target, GitMerge, Mail } from 'lucide-rea
 
 const Navigation = () => {
   return (
-    <nav style={{
-      position: 'fixed',
-      top: 0,
-      width: '100%',
-      backgroundColor: 'var(--pitch-black)',
-      borderBottom: '4px solid var(--primary-red)',
-      padding: '10px 20px',
-      zIndex: 100,
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center'
-    }}>
+    <nav className="nav-container">
       <div className="spider-sense" style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--off-white)', fontWeight: 'bold' }}>
         <Network color="var(--primary-red)" />
-        <span style={{ fontFamily: 'var(--font-comic)', fontSize: '1.5rem', letterSpacing: '2px' }}>SPIDER-HUB</span>
+        <span style={{ fontFamily: 'var(--font-comic)', fontSize: '1.5rem', letterSpacing: '2px' }}>MANOJIT-SENSE</span>
       </div>
       
-      <ul style={{
-        display: 'flex',
-        listStyle: 'none',
-        gap: '20px'
-      }}>
+      <ul className="nav-menu">
         {['Home', 'Origin', 'Powers', 'Missions', 'Timeline', 'Contact'].map((item) => (
           <li key={item}>
             <a href={`#${item.toLowerCase()}`} className="comic-btn" style={{ padding: '8px 16px', fontSize: '1rem' }}>
@@ -32,6 +17,11 @@ const Navigation = () => {
             </a>
           </li>
         ))}
+        <li>
+          <a href="https://raw.githubusercontent.com/manuelonthekey/RESUME/main/ManojitMaitra_Resume_july26.pdf" download="ManojitMaitra_resume" target="_blank" rel="noopener noreferrer" className="comic-btn" style={{ padding: '8px 16px', fontSize: '1rem', background: 'var(--primary-red)', color: 'var(--off-white)' }}>
+            Resume
+          </a>
+        </li>
       </ul>
     </nav>
   );

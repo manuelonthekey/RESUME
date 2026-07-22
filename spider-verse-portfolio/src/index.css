@@ -1,3 +1,19 @@
+html {
+  scroll-behavior: smooth;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 12.5px;
+  }
+}
+
 :root {
   --primary-red: #D62828;
   --deep-blue: #003049;
@@ -254,3 +270,155 @@ h1, h2, h3, h4, h5, h6 {
 ::-webkit-scrollbar-track { background: var(--pitch-black); border-left: 2px solid var(--primary-red); }
 ::-webkit-scrollbar-thumb { background: var(--primary-red); border: 2px solid var(--pitch-black); }
 ::-webkit-scrollbar-thumb:hover { background: var(--electric-cyan); }
+
+/* Parallelogram panels with hover border offsets */
+.comic-parallelogram {
+  transform: skewX(-4deg);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
+  position: relative;
+  overflow: visible !important; /* Allow the offset border to show */
+  border-width: 5px !important;
+}
+
+.comic-parallelogram > * {
+  transform: skewX(4deg); /* Counter-skew children to keep text readable */
+}
+
+/* Offset popup border outline */
+.comic-parallelogram::after {
+  content: '';
+  position: absolute;
+  top: -5px; left: -5px; right: -5px; bottom: -5px;
+  border: 5px solid var(--primary-red);
+  transform: translate(0, 0);
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.25s ease;
+  z-index: -1;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.comic-parallelogram.dark::after {
+  border-color: var(--electric-cyan);
+}
+
+.comic-parallelogram:hover {
+  transform: skewX(-4deg) translateY(-2px);
+  box-shadow: 6px 6px 0px var(--pitch-black) !important;
+}
+
+.comic-parallelogram:hover::after {
+  transform: translate(12px, 12px);
+  opacity: 1;
+}
+
+/* Modal Animations */
+@keyframes modalBackdropFade {
+  from { opacity: 0; backdrop-filter: blur(0px); }
+  to { opacity: 1; backdrop-filter: blur(5px); }
+}
+
+@keyframes modalPanelSlide {
+  from { transform: scale(0.85) translateY(30px) skewX(-4deg); opacity: 0; }
+  to { transform: scale(1) translateY(0) skewX(-4deg); opacity: 1; }
+}
+
+.modal-backdrop-animate {
+  animation: modalBackdropFade 0.3s ease-out forwards;
+}
+
+.modal-content-animate {
+  animation: modalPanelSlide 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* FeastForecast-inspired Contact Modal styling */
+.feastforecast-modal {
+  max-width: 500px;
+  width: 100%;
+  padding: 30px;
+  background-color: var(--pitch-black) !important;
+  color: var(--off-white) !important;
+  border: 4px solid var(--electric-cyan) !important;
+  box-shadow: 8px 8px 0px var(--glowing-green) !important;
+  position: relative;
+}
+
+.feastforecast-modal input,
+.feastforecast-modal textarea {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  color: var(--off-white) !important;
+  border: 3px solid rgba(0, 240, 255, 0.4) !important;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.feastforecast-modal input:focus,
+.feastforecast-modal textarea:focus {
+  border-color: var(--electric-cyan) !important;
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.5);
+}
+
+.feastforecast-modal label {
+  color: var(--comic-yellow) !important;
+}
+
+.feastforecast-modal h3 {
+  color: var(--comic-yellow) !important;
+  text-shadow: 2px 2px 0px var(--pitch-black) !important;
+}
+
+.feastforecast-modal .comic-btn {
+  background-color: var(--electric-cyan) !important;
+  color: var(--pitch-black) !important;
+  border: 3px solid var(--pitch-black) !important;
+}
+
+.feastforecast-modal .comic-btn:hover {
+  background-color: var(--glowing-green) !important;
+  color: var(--pitch-black) !important;
+}
+
+/* Navigation layout classes */
+.nav-container {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: rgba(17, 17, 17, 0.8);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border-bottom: 4px solid var(--primary-red);
+  padding: 15px 20px;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+  .nav-container {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px 10px;
+  }
+  
+  .nav-menu {
+    justify-content: center;
+    width: 100%;
+    gap: 10px;
+  }
+  
+  .nav-menu a {
+    padding: 6px 12px !important;
+    font-size: 0.85rem !important;
+  }
+}
+
